@@ -1,6 +1,7 @@
 package com.example.igris_english_bot.bot;
 
-import com.example.igris_english_bot.util.botUtil.BotUtil;
+import com.example.igris_english_bot.commands.CommandContainer;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
@@ -14,6 +15,7 @@ import static com.example.igris_english_bot.bot.button.message.TelegramMessageHe
 import static com.example.igris_english_bot.util.botUtil.BotUtil.UNKNOWN_COMMAND_MESSAGE;
 
 @RequiredArgsConstructor
+@NoArgsConstructor(force = true)
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
     private static final String NEXT_BUTTON_TEXT = "Далее";
@@ -24,17 +26,17 @@ public class TelegramBot extends TelegramLongPollingBot {
             "Все что от вас требуется – 10 минут в день"};
 
     private static final String FIRST_QUESTION_BUTTON_TEXT = "Как думаете, сколько слов на английском достаточно знать, чтобы понимать носителей языка, смотреть Netflix в оригинале и чувствовать себя комфортно, проживая заграницей?";
-    private static final String START_BUTTON_TEXT = "Начать";
-    private static final String START_BUTTON_CALLBACK_DATA = "starts";
+
+    private final CommandContainer commandContainer;
 
     @Override
     public String getBotUsername() {
-        return BotUtil.BOT_USERNAME;
+        return "Igris_eNGLISH_bot";
     }
 
     @Override
     public String getBotToken() {
-        return BotUtil.BOT_TOKEN;
+        return "7030874805:AAGuagul61MveOCc5p2rY2tM8BCMES4Gn38";
     }
 
     @SneakyThrows
@@ -52,7 +54,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         long chatId = update.getMessage().getChatId();
 
         if (messageText.equalsIgnoreCase("/start")) {
-            sendMessageWithButton(chatId, START_MESSAGE, START_BUTTON_TEXT, START_BUTTON_CALLBACK_DATA, this);
+            commandContainer.executeCommand(chatId, "start", this);
         } else {
             sendMessage(chatId, UNKNOWN_COMMAND_MESSAGE);
         }

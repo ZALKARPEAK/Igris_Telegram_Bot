@@ -11,7 +11,6 @@ import org.springframework.data.domain.Persistable;
 @Setter
 @MappedSuperclass
 public abstract class BaseEntity implements Persistable<Long> {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;

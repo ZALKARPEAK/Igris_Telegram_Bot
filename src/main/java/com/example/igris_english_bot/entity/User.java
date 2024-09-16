@@ -12,7 +12,6 @@ import java.util.Objects;
 @Table(name = "Users")
 @NoArgsConstructor
 public class User extends BaseEntity {
-
     @Getter
     @Setter
     @Column(name = "chat_id")
