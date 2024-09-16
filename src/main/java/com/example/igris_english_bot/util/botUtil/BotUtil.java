@@ -2,6 +2,7 @@ package com.example.igris_english_bot.util.botUtil;
 
 import java.rmi.AccessException;
 import java.util.regex.Pattern;
+
 import static com.example.igris_english_bot.util.botUtil.PropertiesUtil.get;
 
 public final class BotUtil {
@@ -13,9 +14,9 @@ public final class BotUtil {
 
     public static int EXECUTE_NOTICE_TIMEOUT = 600000;
 
-    public static String BOT_TOKEN = get("bot.token");
+/*    public static String BOT_TOKEN = get("bot.token");
 
-    public static String BOT_USERNAME = get("bot.username");
+    public static String BOT_USERNAME = get("bot.username");*/
 
     public static String ADMIN_CHAT_ID = get("admin.chat.id");
 
