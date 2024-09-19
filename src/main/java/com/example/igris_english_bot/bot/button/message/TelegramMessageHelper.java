@@ -51,4 +51,16 @@ public class TelegramMessageHelper {
             e.printStackTrace();
         }
     }
+
+    public static void sendMessage(long chatId, String message, TelegramLongPollingBot bot) {
+        SendMessage messageToSend = new SendMessage();
+        messageToSend.setChatId(chatId);
+        messageToSend.setText(message);
+
+        try {
+            bot.execute(messageToSend);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
 }
