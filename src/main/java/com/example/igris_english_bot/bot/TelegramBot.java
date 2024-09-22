@@ -30,6 +30,8 @@ public class TelegramBot extends TelegramLongPollingBot {
         buttonContainer.registerButton("Yes", new SecondQuestionButton());
         buttonContainer.registerButton("Yeah", new AnswerSecondQuestionButton());
         buttonContainer.registerButton("beautiful", new MoreInformationTechniquesButton());
+        buttonContainer.registerButton("MoreInformationOnTechniques", new LearnOrDoButtonsButton());
+
 
         try {
             this.telegramBotsApi.registerBot(this);
@@ -42,7 +44,6 @@ public class TelegramBot extends TelegramLongPollingBot {
     public String getBotUsername() {
         return "Igris_eNGLISH_bot";
     }
-
     @Override
     public String getBotToken() {
         return "7030874805:AAGuagul61MveOCc5p2rY2tM8BCMES4Gn38";
@@ -67,13 +68,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     private void processCallbackQuery(CallbackQuery callbackQuery) {
         String callbackData = callbackQuery.getData();
         long chatId = callbackQuery.getMessage().getChatId();
-        ButtonHandler handler = buttonContainer.getHandler(callbackData);
-
-        if (callbackData.equals("3000")) {
-            handler = buttonContainer.getHandler("3000");
-        } else if (callbackData.equals("7000") || callbackData.equals("10000")) {
-            TelegramMessageHelper.sendMessage(chatId, WRONG_ANSWER_MESSAGE, this);
-        }
+        ButtonHandler handler = buttonContainer.getHandler(callbackData);;
 
         if (handler != null) {
             handler.handle(chatId, this);

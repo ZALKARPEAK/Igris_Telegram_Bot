@@ -16,6 +16,14 @@ public class LearnOrDoButtonsButton implements ButtonHandler {
     public void handle(long chatId, TelegramLongPollingBot bot) {
         for (String message : LEARN_OR_DO_MESSAGES) {
             TelegramMessageHelper.sendMessage(chatId, message, bot);
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
+
+        TelegramMessageHelper.sendMessageWithButtons(chatId, LEARN_OR_DO_BUTTON_MESSAGE,
+                LEARN_OR_DO_BUTTON_TEXT, LEARN_OR_DO_CALLBACK_DATA, bot);
     }
 }
